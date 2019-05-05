@@ -1,11 +1,16 @@
-public class Candidat extends Persoana{
+package domain.entity;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Candidat extends Persoana {
     private final Liceu liceu;
     private final Bacalaureat bac;
     private int nrOptiuni;
     private Examene[] optiuni;
     private double medie;
     private int cerereContestatii;
-    private Contestatie[] contestatii;
+    private List<Contestatie> contestatii;
 
     public int getCerereContestatii() {
         return cerereContestatii;
@@ -15,11 +20,11 @@ public class Candidat extends Persoana{
         this.cerereContestatii = cerereContestatii;
     }
 
-    public Contestatie[] getContestatii() {
+    public List<Contestatie> getContestatii() {
         return contestatii;
     }
 
-    public void setContestatii(Contestatie[] contestatii) {
+    public void setContestatii(List<Contestatie> contestatii) {
         this.contestatii = contestatii;
     }
 
@@ -29,7 +34,7 @@ public class Candidat extends Persoana{
         this.bac = bac;
         this.nrOptiuni = nrOptiuni;
         this.optiuni = optiuni;
-        this.contestatii = new Contestatie[4];
+        this.contestatii = new ArrayList<Contestatie>();
         this.cerereContestatii = 0;
         if(this.bac.getAdmis() == 0)
             for(int i = 0; i < nrOptiuni; i++)
@@ -73,8 +78,8 @@ public class Candidat extends Persoana{
             System.out.print("Optiunea "+ (i+1) + ": ");
             optiuni[i].afisare();
             if(cerereContestatii == 1) {
-                contestatii[i * 2].afisare();
-                contestatii[i * 2 + 1].afisare();
+                contestatii.get(i * 2).afisare();
+                contestatii.get(i * 2 + 1).afisare();
             }
         }
 
